@@ -1,19 +1,23 @@
 <script>
 	// @ts-ignore
-
-	let tittleText = [];
+	let tittleunderline = [];
 
 	const enterTittleColor = () => {
-		for (let i = 0; i < tittleText.length; i++) {
+		for (let i = 0; i < tittleunderline.length; i++) {
 			// @ts-ignore
-			tittleText[i].style.borderBottom = '14px solid white';
-        }
+			if (i === 0) {
+				// @ts-ignore
+				tittleunderline[i].style.width = '40%';
+			} else {
+				// @ts-ignore
+				tittleunderline[i].style.width = '100%';
+			}
+		}
 	};
-
 	const leaveTittleColor = () => {
-		for (let i = 0; i < tittleText.length; i++) {
+		for (let i = 0; i < tittleunderline.length; i++) {
 			// @ts-ignore
-            tittleText[i].style.borderBottom = '8px solid black';
+			tittleunderline[i].style.width = '0%';
 		}
 	};
 </script>
@@ -24,22 +28,27 @@
 			<!-- <div id="circle1"></div> -->
 			<div style="padding-top: 25px;">
 				<h1
-					bind:this={tittleText[0]}
 					on:mouseenter={enterTittleColor}
 					on:mouseleave={leaveTittleColor}
 					class="tittleText"
+					id="tittleText"
 					style="width: fit-content;"
 				>
 					Hi, i'm Jules,
 				</h1>
+
+				<div class="textUnderline" bind:this={tittleunderline[0]} />
+
 				<h1
-					bind:this={tittleText[1]}
 					on:mouseenter={enterTittleColor}
-					on:mouseleave={leaveTittleColor}
+					on:mouseleave={leaveTittleColor} 
 					class="tittleText"
 				>
 					a student in web developpement
 				</h1>
+
+				<div class="textUnderline" bind:this={tittleunderline[1]} />
+
 			</div>
 		</div>
 	</div>
@@ -51,6 +60,14 @@
 	body {
 		padding: 0;
 		margin: 0;
+	}
+
+	.textUnderline {
+		width: 0%;
+		height: 10px;
+		margin-left: 10px;
+		transition: 0.2s ease;
+		background-color: white;
 	}
 
 	#tittleSection {
