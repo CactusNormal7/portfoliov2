@@ -1,25 +1,25 @@
 <script>
 	// @ts-ignore
-	let tittleunderline = [];
+	// let tittleunderline = [];
 
-	const enterTittleColor = () => {
-		for (let i = 0; i < tittleunderline.length; i++) {
-			// @ts-ignore
-			if (i === 0) {
-				// @ts-ignore
-				tittleunderline[i].style.width = '40%';
-			} else {
-				// @ts-ignore
-				tittleunderline[i].style.width = '100%';
-			}
-		}
-	};
-	const leaveTittleColor = () => {
-		for (let i = 0; i < tittleunderline.length; i++) {
-			// @ts-ignore
-			tittleunderline[i].style.width = '0%';
-		}
-	};
+	// const enterTittleColor = () => {
+	// 	for (let i = 0; i < tittleunderline.length; i++) {
+	// 		// @ts-ignore
+	// 		if (i === 0) {
+	// 			// @ts-ignore
+	// 			tittleunderline[i].style.width = '40%';
+	// 		} else {
+	// 			// @ts-ignore
+	// 			tittleunderline[i].style.width = '100%';
+	// 		}
+	// 	}
+	// };
+	// const leaveTittleColor = () => {
+	// 	for (let i = 0; i < tittleunderline.length; i++) {
+	// 		// @ts-ignore
+	// 		tittleunderline[i].style.width = '0%';
+	// 	}
+	// };
 </script>
 
 <body>
@@ -27,28 +27,8 @@
 		<div id="tittleSection">
 			<!-- <div id="circle1"></div> -->
 			<div style="padding-top: 25px;">
-				<h1
-					on:mouseenter={enterTittleColor}
-					on:mouseleave={leaveTittleColor}
-					class="tittleText"
-					id="tittleText"
-					style="width: fit-content;"
-				>
-					Hi, i'm Jules,
-				</h1>
-
-				<div class="textUnderline" bind:this={tittleunderline[0]} />
-
-				<h1
-					on:mouseenter={enterTittleColor}
-					on:mouseleave={leaveTittleColor} 
-					class="tittleText"
-				>
-					a student in web developpement
-				</h1>
-
-				<div class="textUnderline" bind:this={tittleunderline[1]} />
-
+				<h1 class="tittleText" id="tittleText" style="width: fit-content;">Hi, i'm Jules,</h1>
+				<h1 class="tittleText">a student in web developpement</h1>
 			</div>
 		</div>
 	</div>
@@ -60,14 +40,6 @@
 	body {
 		padding: 0;
 		margin: 0;
-	}
-
-	.textUnderline {
-		width: 0%;
-		height: 10px;
-		margin-left: 10px;
-		transition: 0.2s ease;
-		background-color: white;
 	}
 
 	#tittleSection {
@@ -102,15 +74,30 @@
 		margin-top: 0;
 		border-bottom: 5px solid black;
 		color: white;
+		position: relative;
 		font-weight: bolder;
 		padding: 0px 10px 0px 10px;
 		transition: 0.5s;
-		animation: 0.5s ease-in-out test;
+		animation: 0.8s ease titteComing;
 		font-family: 'Roboto', sans-serif;
 		font-size: 60px;
 	}
 
-	@keyframes test {
+	.tittleText:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 8px;
+		background-color: white; /* Couleur du soulignement */
+		bottom: 0;
+		left: 0;
+		transform: translateY(10px);
+		transform-origin: right;
+		transition: transform 0.3s ease;
+		animation: 1s ease tittleunderline;
+	}
+
+	@keyframes titteComing {
 		0% {
 			transform: translateY(-200px);
 		}
@@ -119,4 +106,15 @@
 			transform: translateY(0px);
 		}
 	}
+
+	@keyframes tittleunderline {
+		0% {
+			width: 0;
+		}
+
+		100% {
+			width: 100;
+		}
+	}
+
 </style>
