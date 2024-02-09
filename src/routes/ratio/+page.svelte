@@ -17,14 +17,11 @@
 	let scrollLevel = 0
 
 	const handleScroll = (e) => {
-		e.preventDefault();
-
 		if (e.deltaY > 0 && currentSection < sections.length - 1) {
 			currentSection++;
 		} else if (e.deltaY < 0 && currentSection > 0) {
 			currentSection--;
 		}
-
 		scrollToSection(currentSection);
 	};
 
@@ -70,7 +67,7 @@
 	}
 </script>
 
-<body role="application" on:mousemove={handleMouseMove} on:mousewheel={handleScroll}>
+<body role="application" on:wheel={handleScroll} on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
 		<div bind:this={insideCursor} class="insideCircle" />
@@ -137,8 +134,8 @@ black : 141416
 	* {
 		font-family: 'Roboto', sans-serif;
 		padding: 0;
-		margin: 0;
 		overflow: hidden;
+		margin: 0;
 		cursor: none;
 	}
 
@@ -196,6 +193,7 @@ black : 141416
 		color: white;
 		animation: tracking-in-expand 1s ease forwards;
 		margin: 0;
+		user-select: none;
 		margin-bottom: 100px;
 	}
 
