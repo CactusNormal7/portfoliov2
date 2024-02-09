@@ -6,6 +6,16 @@
 	let cursor = null;
 	let insideCursor = null;
 
+	//mouse speed
+	let lastMouseX = 0;
+	let lastMouseY = 0;
+	let speedX = 0;
+	let speedY = 0;
+	let marge;
+	let cas = 0;
+
+	let scrollLevel = 0
+
 	const handleScroll = (e) => {
 		e.preventDefault();
 
@@ -19,13 +29,36 @@
 	};
 
 	const handleMouseMove = (e) => {
-		cursor.style.left = `${e.clientX - 45}px`
-		cursor.style.top = `${e.clientY - 45}px`
+		const currentMouseX = e.clientX;
+		const currentMouseY = e.clientY;
+		scrollLevel = window.scrollY
+		if (lastMouseX !== undefined && lastMouseY !== undefined) {
+			const deltaX = Math.abs(currentMouseX - lastMouseX);
+			const deltaY = Math.abs(currentMouseY - lastMouseY);
+			const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY); // Magnitude de la vitesse
 
-		insideCursor.style.left = `${e.clientX  - 5}px`
-		insideCursor.style.top = `${e.clientY - 5}px`
+			// Ajustez le diamètre du curseur en fonction de la vitesse
+			const cursorDiameter = Math.max(40 + speed * 3, 20); // Taille minimale de 20px
+			marge = Math.floor(cursorDiameter / 3);
+			cursor.style.width = `${cursorDiameter}px`;
+			cursor.style.height = `${cursorDiameter}px`;
+		}
+		cursor.style.left = `${currentMouseX - marge}px`;
+		cursor.style.top = `${currentMouseY - marge  + scrollLevel}px`;
 
-		setTimeout(updateCursor, 100);
+		insideCursor.style.left = `${currentMouseX - 5}px`;
+		insideCursor.style.top = `${currentMouseY - 5  + scrollLevel}px`;
+
+		lastMouseX = currentMouseX;
+		lastMouseY = currentMouseY;
+	};
+
+	function mouseEnterButtonNavBar() {
+		cursor.style.visibility = 'hidden';
+	}
+
+	function mouseLeaveButtonNavBar() {
+		cursor.style.visibility = 'visible';
 	}
 
 	function scrollToSection(index) {
@@ -42,13 +75,34 @@
 		<div bind:this={cursor} class="circleMouse" />
 		<div bind:this={insideCursor} class="insideCircle" />
 		<div class="navbarDiv">
-			<button class="navbarButton"><a class="navbarA" href="">about me</a></button>
+			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+			<button
+				on:mouseleave={mouseLeaveButtonNavBar}
+				on:mouseenter={mouseEnterButtonNavBar}
+				on:click={scrollToSection.bind(this, 0)}
+				class="navbarButton">about me</button
+			>
 			<div class="spacerNavbar" />
-			<button class="navbarButton"><a class="navbarA" href="">projects</a></button>
+			<button
+				on:mouseleave={mouseLeaveButtonNavBar}
+				on:mouseenter={mouseEnterButtonNavBar}
+				on:click={scrollToSection.bind(this, 1)}
+				class="navbarButton">projects</button
+			>
 			<div class="spacerNavbar" />
-			<button class="navbarButton"><a class="navbarA" href="">nword</a></button>
+			<button
+				on:mouseleave={mouseLeaveButtonNavBar}
+				on:mouseenter={mouseEnterButtonNavBar}
+				on:click={scrollToSection.bind(this, 2)}
+				class="navbarButton">test</button
+			>
 			<div class="spacerNavbar" />
-			<button class="navbarButton"><a class="navbarA" href="">test</a></button>
+			<button
+				on:mouseleave={mouseLeaveButtonNavBar}
+				on:mouseenter={mouseEnterButtonNavBar}
+				on:click={scrollToSection.bind(this, 3)}
+				class="navbarButton">test</button
+			>
 		</div>
 	</div>
 
@@ -98,7 +152,8 @@ black : 141416
 		width: 100px;
 		height: 100px;
 		border-radius: 50%;
-		transition: 0.1s ease;
+		transition: 0.05s ease;
+		z-index: 20;
 		background-color: white;
 		mix-blend-mode: difference; /* Changez le mode de fusion selon vos préférences */
 		pointer-events: none; /* Assurez-vous que le cercle ne bloque pas les événements de la souris */
@@ -110,7 +165,8 @@ black : 141416
 		z-index: 20;
 		height: 20px;
 		border-radius: 50%;
-		background-color: black;
+		background-color: white;
+		mix-blend-mode: difference;
 		opacity: 70%;
 		pointer-events: none;
 	}
@@ -128,11 +184,11 @@ black : 141416
 	}
 
 	#sec2 {
-		background-color: white;
+		background-color: #141416;
 	}
 
 	#sec3 {
-		background-color: black;
+		background-color: #141416;
 	}
 
 	#mainTittle {
@@ -151,36 +207,54 @@ black : 141416
 		justify-content: space-between;
 		width: 30%;
 		align-items: center;
+		overflow:visible;
 		transform: translate(-50%, -50%);
-		height: 70px;
+		height: 90px;
 	}
 
 	.navbarButton {
 		min-width: 70px;
 		min-height: 70px;
-		border-radius: 100px;
+		border-radius: 1000px;
 		background-color: #141416;
 		font-family: 'Roboto', sans-serif;
 		border: 2px solid #2f2f31;
+		color: #2f2f31;
+		font-size: 80%;
+		z-index: 19;
+		font-weight: bolder;
+		position: relative;
 	}
 
-	.navbarA {
-		text-decoration: none;
-		font-family: 'Roboto', sans-serif;
-		font-weight: bolder;
-		color: #2f2f31;
+	.navbarButton::before {
+		content: '';
+		display: block;
+		width: 0px;
+		height: 0px;
+		background-color: white;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: width 0.3s, height 0.3s;
+	}
+
+	.navbarButton:hover {
+		color: #141416;
+		transform: scale(1.1); /* Agrandit le bouton au survol */
+	}
+
+	.navbarButton:hover::before {
+		width: 90px;
+		height: 90px;
+		z-index: -1;
 	}
 
 	.spacerNavbar {
 		width: 100%;
 		height: 2px;
 		background-color: #2f2f31;
-	}
-
-	.navbarButton:hover {
-		color: white;
-		border: 2px solid white;
-		transition: 1s ease;
 	}
 
 	.navbarA:hover {
@@ -192,7 +266,7 @@ black : 141416
 		display: flex;
 	}
 
-	@-webkit-keyframes tracking-in-expand {
+	/* @-webkit-keyframes tracking-in-expand {
 		0% {
 			letter-spacing: -0.5em;
 			opacity: 0;
@@ -203,7 +277,7 @@ black : 141416
 		100% {
 			opacity: 1;
 		}
-	}
+	} */
 	@keyframes tracking-in-expand {
 		0% {
 			letter-spacing: -0.5em;
