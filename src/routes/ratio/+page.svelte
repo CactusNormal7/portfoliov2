@@ -6,6 +6,8 @@
 	let cursor = null;
 	let insideCursor = null;
 
+
+	
 	//mouse speed
 	let lastMouseX = 0;
 	let lastMouseY = 0;
@@ -35,11 +37,15 @@
 			const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY); // Magnitude de la vitesse
 
 			// Ajustez le diamètre du curseur en fonction de la vitesse
-			const cursorDiameter = Math.max(40 + speed * 3, 20); // Taille minimale de 20px
+			let cursorDiameter = Math.max(40 + speed * 3, 20); // Taille minimale de 20px
+			if (cursorDiameter > 200) {
+				cursorDiameter = 200
+			}
 			marge = Math.floor(cursorDiameter / 3);
 			cursor.style.width = `${cursorDiameter}px`;
 			cursor.style.height = `${cursorDiameter}px`;
 		}
+		
 		cursor.style.left = `${currentMouseX - marge}px`;
 		cursor.style.top = `${currentMouseY - marge  + scrollLevel}px`;
 
@@ -105,12 +111,12 @@
 
 	<div class="section" id="sec1" bind:this={sections[0]}>
 		<div class="MainTittleSection">
-			<h1 id="mainTittle">WELCOME</h1>
+			<h1 class="TitleSection" id="mainTittle">WELCOME</h1>
 		</div>
 	</div>
 	<div class="section" id="sec2" bind:this={sections[1]}>
 		<div class="MainTittleSection">
-			<h1 id="mainTittle">WELCOME</h1>
+			<h1 class="TitleSection" id="ProjectTittle">WELCOME</h1>
 		</div>
 	</div>
 	<div class="section" id="sec3" bind:this={sections[2]}>
@@ -124,7 +130,7 @@
 ----colors----
 
 black : 141416
-
+grey : 2f2f31
 
 -->
 
@@ -188,7 +194,7 @@ black : 141416
 		background-color: #141416;
 	}
 
-	#mainTittle {
+	.TitleSection {
 		font-size: 200px;
 		color: white;
 		animation: tracking-in-expand 1s ease forwards;
@@ -196,6 +202,11 @@ black : 141416
 		user-select: none;
 		margin-bottom: 100px;
 	}
+
+	#mainTittle {
+		animation: tracking-in-expand 1s ease forwards, letter-shadow 2s ease forwards;
+	}
+
 
 	.navbarDiv {
 		position: fixed;
@@ -286,6 +297,18 @@ black : 141416
 		}
 		100% {
 			opacity: 1;
+		}
+	}
+
+	@keyframes letter-shadow {
+		0% {
+			text-shadow: 0px 0px #2f2f31;
+		}
+		40% {
+			text-shadow: 5px 5px #2f2f31;
+		}
+		100% {
+			text-shadow: 15px 15px #2f2f31;
 		}
 	}
 </style>
