@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { onMount } from 'svelte';
-	import Card from "./../components/card.svelte"
+	import Card from './../components/card.svelte';
 
 	const projects = [
 		{
@@ -47,10 +47,10 @@
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					isinter = true;
-					console.log(isinter)
+					console.log(isinter);
 				} else {
 					isinter = false;
-					console.log(isinter)
+					console.log(isinter);
 				}
 			});
 		});
@@ -160,7 +160,7 @@
 	<div class="section" id="sec2" bind:this={sections[1]}>
 		<div id="UnderSection1sec2">
 			<div class="MainTittleSection">
-				<div bind:this={elementToAnimate} ></div>
+				<div bind:this={elementToAnimate} />
 				{#if isinter}
 					<h1 id="projectTittle" class="animate-test TitleSection">Project</h1>
 				{:else}
@@ -169,7 +169,14 @@
 			</div>
 			<div id="cardSection">
 				{#each projects as project}
-					<Card first="{project.tittle}"></Card>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
+					<div
+						id="divWrapper"
+						on:mouseleave={mouseLeaveButtonNavBar}
+						on:mouseenter={mouseEnterButtonNavBar}
+					>
+						<Card first={project.tittle} />
+					</div>
 				{/each}
 			</div>
 		</div>
@@ -351,6 +358,10 @@ grey : 2f2f31
 		width: 50%;
 		padding: 40px;
 		flex-wrap: wrap;
+	}
+
+	#divWrapper {
+		display: contents;
 	}
 
 	/* @-webkit-keyframes tracking-in-expand {
