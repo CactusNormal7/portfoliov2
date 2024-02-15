@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { onMount } from 'svelte';
+	import Card from "./../components/card.svelte"
 
 	const projects = [
 		{
@@ -168,7 +169,7 @@
 			</div>
 			<div id="cardSection">
 				{#each projects as project}
-					<li key={project.id}>{project.tittle}</li>
+					<Card first="{project.tittle}"></Card>
 				{/each}
 			</div>
 		</div>
@@ -274,7 +275,7 @@ grey : 2f2f31
 	}
 
 	.animate-test {
-		animation: tracking-in-expand 0.5s ease forwards, letter-shadow 1s ease forwards;
+		animation: tracking-in-expand 0.6s ease forwards, letter-shadow 1s ease forwards;
 	}
 
 	.navbarDiv {
@@ -345,7 +346,11 @@ grey : 2f2f31
 	}
 
 	#cardSection {
-		background-color: red;
+		display: flex;
+		gap: 60px;
+		width: 50%;
+		padding: 40px;
+		flex-wrap: wrap;
 	}
 
 	/* @-webkit-keyframes tracking-in-expand {
