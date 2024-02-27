@@ -213,6 +213,81 @@ grey : 2f2f31
 		margin: 0;
 	}
 
+
+
+	@media screen and (min-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: column;
+			height: 60%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 100px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
+	@media screen and (max-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: column;
+			height: 60%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
+	@media screen and (max-height: 700px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: row;
+			display: flex;
+			height: 60%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			flex-direction: column;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
 	.circleMouse {
 		position: absolute;
 		width: 100px;
@@ -254,25 +329,12 @@ grey : 2f2f31
 		background-color: #141416;
 	}
 
-	#UnderSection1sec2 {
-		width: 70%;
-		display: flex;
-		flex-direction: column;
-		height: 60%;
-		overflow: visible;
-	}
+
 
 	#sec3 {
 		background-color: #141416;
 	}
 
-	.TitleSection {
-		font-size: 200px;
-		color: white;
-		margin: 0;
-		user-select: none;
-		margin-bottom: 100px;
-	}
 
 	#mainTittle {
 		animation: tracking-in-expand 1s ease forwards, letter-shadow 2s ease forwards;
@@ -350,16 +412,9 @@ grey : 2f2f31
 	}
 
 	.MainTittleSection {
-	}
-
-	#cardSection {
-		display: flex;
-		gap: 60px;
-		width: 50%;
-		padding: 40px;
-		flex-wrap: wrap;
 		overflow: visible;
 	}
+
 
 	#divWrapper {
 		display: contents;
