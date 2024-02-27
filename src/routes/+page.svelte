@@ -18,7 +18,7 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Monster Blitz',
-			description: 'blabla'
+			description: "Monster Blitz est un projet réalisé dans le cadre d'un cour, c'est un infinite scroller à la maniere de subway surfer ou le jeux du dinosaure du chrome"
 		}
 	];
 
@@ -225,6 +225,7 @@ grey : 2f2f31
 		}
 		.TitleSection {
 			font-size: 200px;
+			color: white;
 			margin: 0;
 			user-select: none;
 			margin-bottom: 100px;
@@ -243,6 +244,7 @@ grey : 2f2f31
 		#UnderSection1sec2 {
 			width: 70%;
 			flex-direction: column;
+			color: white;
 			height: 80%;
 			overflow: visible;
 		}
@@ -268,6 +270,7 @@ grey : 2f2f31
 			width: 70%;
 			flex-direction: row;
 			display: flex;
+			color: white;
 			height: 60%;
 			overflow: visible;
 		}

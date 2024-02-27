@@ -22,6 +22,9 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500&display=swap');
 
+	* {
+		font-family: "Roboto", sans-serif;
+	}
 
 	.card {
 		width: 190px;
@@ -31,7 +34,7 @@
 		transition: all 0.4s;
         border: 2px solid #2f2f31;
 		border-radius: 10px;
-        text-shadow: 10px 10px #141416;
+        /* text-shadow: 10px 10px #141416; */
 		font-size: 30px;
 		font-weight: 900;
 	}
@@ -48,7 +51,7 @@
 		border-radius: 15px;
 		z-index: 18;
 		cursor: pointer;
-		transform: scale(2.1);
+		transform: scale(1.3);
         color: #2f2f31;
         text-shadow: none;
     	box-shadow: 12px 12px 0px 0px #2f2f31;
