@@ -10,7 +10,7 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Safe Area',
-			description: 'blabla'
+			description: "SafeArea est une web app qui permet aux aux membres d'une entreprise de déposé des plaintes auprès des responsables de façon anonymes ou non par l'intermédiaire de l'application"
 		},
 		{
 			id: 2,
@@ -175,7 +175,7 @@
 						on:mouseleave={mouseLeaveButtonNavBar}
 						on:mouseenter={mouseEnterButtonNavBar}
 					>
-						<Card first={project.tittle} />
+						<Card first={project.tittle} second={project.description}/>
 					</div>
 				{/each}
 			</div>
@@ -259,6 +259,7 @@ grey : 2f2f31
 		display: flex;
 		flex-direction: column;
 		height: 60%;
+		overflow: visible;
 	}
 
 	#sec3 {
@@ -357,6 +358,7 @@ grey : 2f2f31
 		width: 50%;
 		padding: 40px;
 		flex-wrap: wrap;
+		overflow: visible;
 	}
 
 	#divWrapper {
@@ -376,6 +378,7 @@ grey : 2f2f31
 			opacity: 1;
 		}
 	} */
+
 	@keyframes tracking-in-expand {
 		0% {
 			letter-spacing: -0.5em;

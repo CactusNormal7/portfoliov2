@@ -8,10 +8,21 @@
 	<div class="first-content">
 		<span id="firstspan">{first}</span>
 	</div>
-
+	<div class="second-content">
+		<div>
+			<h2>{first} : </h2>
+		</div>
+		<div class="descSection">
+			<span class="description">{second}</span>
+		</div>
+		<button class="viewMore">view more</button>
+	</div>
 </div>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+
 	.card {
 		width: 190px;
 		height: 254px;
@@ -25,24 +36,27 @@
 		font-weight: 900;
 	}
 
+	.description {
+		width: 80%;
+	}
+
     #firstspan {
         max-width: 70%;
     }
 
 	.card:hover {
 		border-radius: 15px;
+		z-index: 18;
 		cursor: pointer;
-		transform: scale(1.1);
-        color: white;
-        text-shadow: 15px 15px #141416;
-        box-shadow: 12px 12px 0px 0px #2f2f31;
-		background: white;
+		transform: scale(2.1);
+        color: #2f2f31;
+        text-shadow: none;
+    	box-shadow: 12px 12px 0px 0px #2f2f31;
 	}
 
 	.first-content {
 		height: 100%;
 		width: 100%;
-		transition: all 0.4s;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -51,28 +65,47 @@
 	}
 
 	.card:hover .first-content {
-		height: 0px;
+		visibility: hidden;
+		height: 0%;
+		transition: 0s;
 		opacity: 0;
+	}
+
+	.descSection {
+		width: 80%;
 	}
 
 	.second-content {
-		height: 0%;
+		height: 100%;
 		width: 100%;
 		opacity: 0;
+		visibility: hidden;
 		display: flex;
 		justify-content: center;
+		flex-direction: column;
+		background-color: white;
+		gap: 20px;
 		align-items: center;
+		transition: 0s;
 		border-radius: 15px;
-		transition: all 0.4s;
-		font-size: 0px;
-		transform: rotate(90deg) scale(-1);
+		/* transition: all 0.4s; */
+		font-size: 0.7rem;
 	}
 
+	.viewMore {
+		padding: 5px;
+		border: 2px solid black;
+		transform: scale(0.8);
+		background-color: white;
+		font-family: 'Roboto', sans-serif;
+		font-weight: bold;
+	}
+
+
 	.card:hover .second-content {
+		visibility: visible;
 		opacity: 1;
 		height: 100%;
-		font-size: 1.8rem;
-		transform: rotate(0deg);
 	}
 </style>
 
