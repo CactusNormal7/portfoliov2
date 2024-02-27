@@ -219,7 +219,8 @@ grey : 2f2f31
 		#UnderSection1sec2 {
 			width: 70%;
 			flex-direction: column;
-			height: 60%;
+			color: white;
+			height: 70%;
 			overflow: visible;
 		}
 		.TitleSection {
@@ -242,7 +243,7 @@ grey : 2f2f31
 		#UnderSection1sec2 {
 			width: 70%;
 			flex-direction: column;
-			height: 60%;
+			height: 80%;
 			overflow: visible;
 		}
 		.TitleSection {
