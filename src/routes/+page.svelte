@@ -36,7 +36,6 @@
 	let cas = 0;
 
 	let scrollLevel = 0;
-
 	//____________________________________
 
 	let elementToAnimate;
@@ -59,13 +58,14 @@
 	};
 	//____________________________________
 
+
 	const handleScroll = (e) => {
 		if (e.deltaY > 0 && currentSection < sections.length - 1) {
 			currentSection++;
 		} else if (e.deltaY < 0 && currentSection > 0) {
 			currentSection--;
-		}
-		scrollToSection(currentSection);
+	}
+	scrollToSection(currentSection);
 	};
 
 	const handleMouseMove = (e) => {
@@ -221,8 +221,8 @@ grey : 2f2f31
 		transition: 0.05s ease;
 		z-index: 20;
 		background-color: white;
-		mix-blend-mode: difference; /* Changez le mode de fusion selon vos préférences */
-		pointer-events: none; /* Assurez-vous que le cercle ne bloque pas les événements de la souris */
+		mix-blend-mode: difference;
+		pointer-events: none; 
 	}
 
 	.insideCircle {
@@ -349,7 +349,6 @@ grey : 2f2f31
 	}
 
 	.MainTittleSection {
-		display: flex;
 	}
 
 	#cardSection {
@@ -363,6 +362,7 @@ grey : 2f2f31
 	#divWrapper {
 		display: contents;
 	}
+
 
 	/* @-webkit-keyframes tracking-in-expand {
 		0% {
