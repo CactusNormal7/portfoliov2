@@ -29,7 +29,7 @@
 	let cursor = null;
 	let insideCursor = null;
 	let body;
-	let cardsRef;
+	let cardsRef = []
 
 	//mouse speed
 	let lastMouseX = 0;
@@ -105,7 +105,9 @@
 	}
 
 	function test() {
-		console.log('dadza');
+		for (let i = 0; i < cardsRef.length; i++) {
+			console.log(cardsRef[i].children[0]);			
+		}
 	}
 
 	function mouseLeaveButtonNavBar() {
@@ -181,6 +183,7 @@
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<!-- bind:this={cardsRef[index]} -->
 					<div id="divWrapper"
+						bind:this={cardsRef[index]}
 						on:mouseleave={mouseLeaveButtonNavBar}
 						on:mouseenter={mouseEnterButtonNavBar}>
 						<Card first={project.tittle} second={project.description} />
