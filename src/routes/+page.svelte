@@ -10,7 +10,8 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Safe Area',
-			description: 'blabla'
+			description: 'blabla',
+			git: ''
 		},
 		{
 			id: 2,
@@ -18,7 +19,8 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Monster Blitz',
-			description: 'blabla'
+			description: 'blabla',
+			git: ''
 		}
 	];
 
@@ -115,7 +117,7 @@
 	onMount(observeElement);
 </script>
 
-<body role="application" on:wheel={handleScroll} on:mousemove={handleMouseMove}>
+<body role="application" on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
 		<div bind:this={insideCursor} class="insideCircle" />
@@ -203,9 +205,14 @@ grey : 2f2f31
 	* {
 		font-family: 'Roboto', sans-serif;
 		padding: 0;
-		overflow: hidden;
 		margin: 0;
 		cursor: none;
+		overflow-x: hidden;
+	}
+
+	*::-webkit-scrollbar {
+		scrollbar-width: 0;
+		display: none;
 	}
 
 	body {
