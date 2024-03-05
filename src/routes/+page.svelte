@@ -28,6 +28,8 @@
 	const sections = [];
 	let cursor = null;
 	let insideCursor = null;
+	let body;
+	let cardsRef;
 
 	//mouse speed
 	let lastMouseX = 0;
@@ -38,7 +40,6 @@
 	let cas = 0;
 
 	let scrollLevel = 0;
-
 	//____________________________________
 
 	let elementToAnimate;
@@ -103,6 +104,10 @@
 		cursor.style.visibility = 'hidden';
 	}
 
+	function test() {
+		console.log('dadza');
+	}
+
 	function mouseLeaveButtonNavBar() {
 		cursor.style.visibility = 'visible';
 	}
@@ -117,7 +122,9 @@
 	onMount(observeElement);
 </script>
 
-<body role="application" on:mousemove={handleMouseMove}>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<body bind:this={body} on:click={test} role="application" on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
 		<div bind:this={insideCursor} class="insideCircle" />
@@ -170,14 +177,13 @@
 				{/if}
 			</div>
 			<div id="cardSection">
-				{#each projects as project}
+				{#each projects as project, index}
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<div
-						id="divWrapper"
+					<!-- bind:this={cardsRef[index]} -->
+					<div id="divWrapper"
 						on:mouseleave={mouseLeaveButtonNavBar}
-						on:mouseenter={mouseEnterButtonNavBar}
-					>
-						<Card first={project.tittle} />
+						on:mouseenter={mouseEnterButtonNavBar}>
+						<Card first={project.tittle} second={project.description} />
 					</div>
 				{/each}
 			</div>
@@ -192,12 +198,12 @@
 </body>
 
 <!-- 
-----colors----
+	----colors----
 
-black : 141416
-grey : 2f2f31
+	black : 141416
+	grey : 2f2f31
 
--->
+	-->
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500&display=swap');
@@ -220,6 +226,83 @@ grey : 2f2f31
 		margin: 0;
 	}
 
+	@media screen and (min-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: column;
+			color: white;
+			height: 70%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 100px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 80%;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
+	@media screen and (max-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: column;
+			color: white;
+			height: 80%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
+	@media screen and (max-height: 700px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: row;
+			display: flex;
+			color: white;
+			height: 60%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			flex-direction: column;
+			padding: 40px;
+			flex-wrap: wrap;
+			overflow: visible;
+		}
+	}
+
 	.circleMouse {
 		position: absolute;
 		width: 100px;
@@ -228,8 +311,8 @@ grey : 2f2f31
 		transition: 0.05s ease;
 		z-index: 20;
 		background-color: white;
-		mix-blend-mode: difference; /* Changez le mode de fusion selon vos préférences */
-		pointer-events: none; /* Assurez-vous que le cercle ne bloque pas les événements de la souris */
+		mix-blend-mode: difference;
+		pointer-events: none;
 	}
 
 	.insideCircle {
@@ -261,23 +344,8 @@ grey : 2f2f31
 		background-color: #141416;
 	}
 
-	#UnderSection1sec2 {
-		width: 70%;
-		display: flex;
-		flex-direction: column;
-		height: 60%;
-	}
-
 	#sec3 {
 		background-color: #141416;
-	}
-
-	.TitleSection {
-		font-size: 200px;
-		color: white;
-		margin: 0;
-		user-select: none;
-		margin-bottom: 100px;
 	}
 
 	#mainTittle {
@@ -356,15 +424,7 @@ grey : 2f2f31
 	}
 
 	.MainTittleSection {
-		display: flex;
-	}
-
-	#cardSection {
-		display: flex;
-		gap: 60px;
-		width: 50%;
-		padding: 40px;
-		flex-wrap: wrap;
+		overflow: visible;
 	}
 
 	#divWrapper {
@@ -372,17 +432,18 @@ grey : 2f2f31
 	}
 
 	/* @-webkit-keyframes tracking-in-expand {
-		0% {
-			letter-spacing: -0.5em;
-			opacity: 0;
-		}
-		40% {
-			opacity: 0.6;
-		}
-		100% {
-			opacity: 1;
-		}
-	} */
+			0% {
+				letter-spacing: -0.5em;
+				opacity: 0;
+			}
+			40% {
+				opacity: 0.6;
+			}
+			100% {
+				opacity: 1;
+			}
+		} */
+
 	@keyframes tracking-in-expand {
 		0% {
 			letter-spacing: -0.5em;
