@@ -10,7 +10,7 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Safe Area',
-			description: 'blabla',
+			description: "Safearea est une application web permettant aux employés d'entreprises de déposer des plaintes vis à vis de comportement innapropriés",
 			git: ''
 		},
 		{
@@ -45,15 +45,14 @@
 	let elementToAnimate;
 	let isinter = false;
 
+
 	const observeElement = () => {
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					isinter = true;
-					console.log(isinter);
 				} else {
 					isinter = false;
-					console.log(isinter);
 				}
 			});
 		});
@@ -249,8 +248,9 @@
 			gap: 60px;
 			width: 80%;
 			padding: 40px;
-			flex-wrap: wrap;
-			overflow: visible;
+			flex-wrap:nowrap;
+			overflow-y: hidden;
+			overflow-x: visible;
 		}
 	}
 
@@ -275,7 +275,7 @@
 			width: 50%;
 			padding: 40px;
 			flex-wrap: wrap;
-			overflow: visible;
+			overflow: auto;
 		}
 	}
 

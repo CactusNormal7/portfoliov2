@@ -16,10 +16,12 @@
 	function modifyExpand() {
 		if (expanded) {
 			// @ts-ignore
-			expandedSection.style.width = '500px';
+			expandedSection.style.visibility = 'visible';
+			expandedSection.style.width = '300px';
 		} else {
 			// @ts-ignore
 			expandedSection.style.width = '0px';
+			expandedSection.style.visibility = 'hidden';
 		}
 	}
 </script>
@@ -35,7 +37,21 @@
 		<!-- <div class="second-content">
 		</div> -->
 	</div>
-	<div bind:this={expandedSection} id="expandedSection" />
+	<div bind:this={expandedSection} id="expandedSection">
+		<div id="expand1">
+			<h1 id="expandtitle">{first}</h1>	
+			<div id="expand12">
+				<p id="descp">
+					{second}
+				</p>
+			</div>
+		</div>
+		<div id="expandmidle">
+			<div id="verticalbar"/>
+		</div>
+		<div id="expand2">
+		</div>
+	</div>
 </div>
 
 <!-- 
@@ -104,13 +120,7 @@ grey : 2f2f31
 		visibility: visible;
 	}
 
-	#expandedSection {
-		background-color: red;
-		width: 0;
-		height: 120%;
-		transition: width 0.4s ease;
-	}
-
+	
 	button {
 		text-decoration: none;
 	}
@@ -139,6 +149,62 @@ grey : 2f2f31
 	#containerAll {
 		display: flex;
 		width: fit-content;
+	}
+
+	#expandtitle {
+		padding: 0px 10px 0px 10px;
+	}
+
+	#expandedSection {
+		width: 0;
+		height: 120%;
+		visibility: hidden;
+		transition: width 0.4s ease;
+		display: flex;
+		margin-left: 30px;
+		overflow: hidden;
+	}
+
+
+	#expand12 {
+		width: 100%;
+		font-weight: bolder;
+		height: 70%;
+		padding: 0px 10px 0px 10px;
+	}
+	
+	#expand1 {
+		width: 80%;
+		overflow: hidden;
+		height: 100%;
+	}
+
+	#descp {
+		max-height: 150px;
+		overflow: hidden;
+	}
+
+	#expandmidle {
+		display: flex;	
+		width: 25%;
+		align-items: center;
+		height: 80%;
+		justify-content: center;
+	}
+
+	#expand2 {
+		width: 20%;
+		height: 100%;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		transition: width 0s;
+	}
+
+	#verticalbar {
+		width: 4px;
+		height: 80%;
+		background-color: #2f2f31;
 	}
 
 	/* 
