@@ -206,8 +206,8 @@ grey : 2f2f31
 
 	.logo {
 		padding: 5px;
-		width : 30px;
-		height: 30px;
+		width : 40px;
+		height: 40px;
 	}
 
 	#verticalbar {

@@ -10,9 +10,10 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Safe Area',
-			description: "Safearea est une application web permettant aux employés d'entreprises de déposer des plaintes 	vis à vis de comportement innapropriés",
+			description:
+				"Safearea est une application web permettant aux employés d'entreprises de déposer des plaintes 	vis à vis de comportement innapropriés",
 			git: '',
-			logos : ["laravel-2.svg", "mysql-logo.svg", "vue-9.svg"]
+			logos: ['laravel-2.svg', 'mysql-logo.svg', 'vue-9.svg']
 		},
 		{
 			id: 2,
@@ -20,9 +21,21 @@
 			url: '',
 			image: 'ratio',
 			tittle: 'Monster Blitz',
-			description: "Jeux mobile dans le cadre d'un projet de cour, infinite scroller à la maniere de subway surfer.",
+			description:
+				"Jeux mobile dans le cadre d'un projet de cour, infinite scroller à la maniere de subway surfer.",
 			git: '',
-			logos : ["unity-69.svg", "c--.svg"]
+			logos: ['unity-69.svg', 'c--.svg']
+		},
+		{
+			id: 3,
+			name: 'Blind test',
+			url: '',
+			image: 'ratio',
+			tittle: 'Blind test',
+			description:
+				"Jeux web développé en react dans le cadre d'un projet de cour sur le theme de la music, les joueurs se regrouppent dans des salles et devinnent des musiques.",
+			git: '',
+			logos: ['react-2.svg', 'nodejs.svg']
 		}
 	];
 
@@ -31,7 +44,7 @@
 	let cursor = null;
 	let insideCursor = null;
 	let body;
-	let cardsRef = []
+	let cardsRef = [];
 
 	//mouse speed
 	let lastMouseX = 0;
@@ -46,7 +59,6 @@
 
 	let elementToAnimate;
 	let isinter = false;
-
 
 	const observeElement = () => {
 		const observer = new IntersectionObserver((entries) => {
@@ -107,7 +119,7 @@
 
 	function test() {
 		for (let i = 0; i < cardsRef.length; i++) {
-			console.log(cardsRef[i].children[0]);			
+			console.log(cardsRef[i].children[0]);
 		}
 	}
 
@@ -160,7 +172,6 @@
 				on:click={scrollToSection.bind(this, 3)}
 				class="navbarButton">test</button
 			>
-			
 		</div>
 	</div>
 
@@ -184,11 +195,13 @@
 				{#each projects as project, index}
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<!-- bind:this={cardsRef[index]} -->
-					<div id="divWrapper"
+					<div
+						id="divWrapper"
 						bind:this={cardsRef[index]}
 						on:mouseleave={mouseLeaveButtonNavBar}
-						on:mouseenter={mouseEnterButtonNavBar}>
-						<Card first={project.tittle} second={project.description} logos={project.logos}/>
+						on:mouseenter={mouseEnterButtonNavBar}
+					>
+						<Card first={project.tittle} second={project.description} logos={project.logos} />
 					</div>
 				{/each}
 			</div>
@@ -231,82 +244,56 @@
 		margin: 0;
 	}
 
-	@media screen and (min-height: 887px) {
-		#UnderSection1sec2 {
-			width: 70%;
-			flex-direction: column;
-			color: white;
-			height: 70%;
-			overflow: visible;
-		}
-		.TitleSection {
-			font-size: 200px;
-			color: white;
-			margin: 0;
-			user-select: none;
-			margin-bottom: 100px;
-		}
-		#cardSection {
-			display: flex;
-			gap: 60px;
-			width: 80%;
-			padding: 40px;
-			flex-wrap:nowrap;
-			overflow-y: hidden;
-			overflow-x: visible;
-		}
+	.navbarButton {
+		min-width: 70px;
+		min-height: 70px;
+		border-radius: 1000px;
+		background-color: #141416;
+		font-family: 'Roboto', sans-serif;
+		border: 2px solid #2f2f31;
+		color: #2f2f31;
+		font-size: 80%;
+		z-index: 19;
+		font-weight: bolder;
+		position: relative;
 	}
 
-	@media screen and (max-height: 887px) {
-		#UnderSection1sec2 {
-			width: 70%;
-			flex-direction: column;
-			color: white;
-			height: 80%;
-			overflow: visible;
-		}
-		.TitleSection {
-			font-size: 200px;
-			color: white;
-			margin: 0;
-			user-select: none;
-			margin-bottom: 20px;
-		}
-		#cardSection {
-			display: flex;
-			gap: 60px;
-			width: 50%;
-			padding: 40px;
-			flex-wrap: wrap;
-			overflow: auto;
-		}
+	.navbarButton::before {
+		content: '';
+		display: block;
+		width: 0px;
+		height: 0px;
+		background-color: white;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: width 0.3s, height 0.3s;
 	}
 
-	@media screen and (max-height: 700px) {
-		#UnderSection1sec2 {
-			width: 70%;
-			flex-direction: row;
-			display: flex;
-			color: white;
-			height: 60%;
-			overflow: visible;
-		}
-		.TitleSection {
-			font-size: 200px;
-			color: white;
-			margin: 0;
-			user-select: none;
-			margin-bottom: 20px;
-		}
-		#cardSection {
-			display: flex;
-			gap: 60px;
-			width: 50%;
-			flex-direction: column;
-			padding: 40px;
-			flex-wrap: wrap;
-			overflow: visible;
-		}
+	.navbarDiv {
+		position: fixed;
+		top: 90%;
+		left: 50%;
+		display: flex;
+		justify-content: space-between;
+		width: 30%;
+		align-items: center;
+		overflow: visible;
+		transform: translate(-50%, -50%);
+		height: 90px;
+	}
+
+	.navbarButton:hover {
+		color: #141416;
+		transform: scale(1.1); /* Agrandit le bouton au survol */
+	}
+
+	.navbarButton:hover::before {
+		width: 90px;
+		height: 90px;
+		z-index: -1;
 	}
 
 	.circleMouse {
@@ -366,58 +353,6 @@
 		animation: tracking-in-expand 0.6s ease forwards, letter-shadow 1s ease forwards;
 	}
 
-	.navbarDiv {
-		position: fixed;
-		top: 90%;
-		left: 50%;
-		display: flex;
-		justify-content: space-between;
-		width: 30%;
-		align-items: center;
-		overflow: visible;
-		transform: translate(-50%, -50%);
-		height: 90px;
-	}
-
-	.navbarButton {
-		min-width: 70px;
-		min-height: 70px;
-		border-radius: 1000px;
-		background-color: #141416;
-		font-family: 'Roboto', sans-serif;
-		border: 2px solid #2f2f31;
-		color: #2f2f31;
-		font-size: 80%;
-		z-index: 19;
-		font-weight: bolder;
-		position: relative;
-	}
-
-	.navbarButton::before {
-		content: '';
-		display: block;
-		width: 0px;
-		height: 0px;
-		background-color: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transition: width 0.3s, height 0.3s;
-	}
-
-	.navbarButton:hover {
-		color: #141416;
-		transform: scale(1.1); /* Agrandit le bouton au survol */
-	}
-
-	.navbarButton:hover::before {
-		width: 90px;
-		height: 90px;
-		z-index: -1;
-	}
-
 	.spacerNavbar {
 		width: 100%;
 		height: 2px;
@@ -449,6 +384,129 @@
 				opacity: 1;
 			}
 		} */
+
+	@media screen and (max-width: 900px) {
+		.navbarDiv {
+			position: fixed;
+			top: 90%;
+			left: 50%;
+			display: flex;
+			justify-content: space-between;
+			width: 90%;
+			align-items: center;
+			overflow: visible;
+			transform: translate(-50%, -50%);
+			height: 75px;
+		}
+
+		.navbarButton {
+			min-width: 60px;
+			min-height: 60px;
+			border-radius: 1000px;
+			background-color: #141416;
+			font-family: 'Roboto', sans-serif;
+			border: 2px solid #2f2f31;
+			color: #2f2f31;
+			font-size: 80%;
+			z-index: 19;
+			font-weight: bolder;
+			position: relative;
+		}
+
+		#mainTittle {
+			font-size: 5em;
+		}
+
+		#projectTittle {
+			font-size: 5.5em;
+		}
+	}
+
+	@media screen and (min-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: column;
+			color: white;
+			height: 70%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 100px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 80%;
+			padding: 40px;
+			flex-wrap: nowrap;
+			overflow-y: hidden;
+			overflow-x: visible;
+		}
+	}
+
+	@media screen and (max-height: 887px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			color: white;
+			height: 80%;
+			scrollbar-width: none; /* Pour Firefox */
+			-ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 80%;
+			padding: 40px;
+			flex-wrap: nowrap;
+			overflow: auto;
+			scrollbar-width: none; /* Pour Firefox */
+			-ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+		}
+
+		#cardSection::-webkit-scrollbar {
+			scrollbar-width: 0;
+			display: none;
+		}
+	}
+
+	@media screen and (max-height: 700px) {
+		#UnderSection1sec2 {
+			width: 70%;
+			flex-direction: row;
+			display: flex;
+			color: white;
+			height: 60%;
+			overflow: visible;
+		}
+		.TitleSection {
+			font-size: 200px;
+			color: white;
+			margin: 0;
+			user-select: none;
+			margin-bottom: 20px;
+		}
+		#cardSection {
+			display: flex;
+			gap: 60px;
+			width: 50%;
+			flex-direction: column;
+			padding: 40px;
+			flex-wrap: nowrap;
+			overflow: visible;
+		}
+	}
 
 	@keyframes tracking-in-expand {
 		0% {
