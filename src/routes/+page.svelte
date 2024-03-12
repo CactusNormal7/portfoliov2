@@ -10,17 +10,19 @@
 			url: 'safearea.fr',
 			image: 'ratio',
 			tittle: 'Safe Area',
-			description: "Safearea est une application web permettant aux employés d'entreprises de déposer des plaintes vis à vis de comportement innapropriés",
-			git: ''
+			description: "Safearea est une application web permettant aux employés d'entreprises de déposer des plaintes 	vis à vis de comportement innapropriés",
+			git: '',
+			logos : ["laravel-2.svg", "mysql-logo.svg", "vue-9.svg"]
 		},
 		{
 			id: 2,
 			name: 'MonsterBlitz',
-			url: 'safearea.fr',
+			url: '',
 			image: 'ratio',
 			tittle: 'Monster Blitz',
-			description: 'blabla',
-			git: ''
+			description: "Jeux mobile dans le cadre d'un projet de cour, infinite scroller à la maniere de subway surfer.",
+			git: '',
+			logos : ["unity-69.svg", "c--.svg"]
 		}
 	];
 
@@ -158,6 +160,7 @@
 				on:click={scrollToSection.bind(this, 3)}
 				class="navbarButton">test</button
 			>
+			
 		</div>
 	</div>
 
@@ -185,7 +188,7 @@
 						bind:this={cardsRef[index]}
 						on:mouseleave={mouseLeaveButtonNavBar}
 						on:mouseenter={mouseEnterButtonNavBar}>
-						<Card first={project.tittle} second={project.description} />
+						<Card first={project.tittle} second={project.description} logos={project.logos}/>
 					</div>
 				{/each}
 			</div>

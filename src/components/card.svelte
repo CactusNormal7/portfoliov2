@@ -4,6 +4,7 @@
 
 	export let first = 'first';
 	export let second = 'second';
+	export let logos = 'logos';
 
 	let expandedSection;
 
@@ -39,7 +40,7 @@
 	</div>
 	<div bind:this={expandedSection} id="expandedSection">
 		<div id="expand1">
-			<h1 id="expandtitle">{first}</h1>	
+			<h1 id="expandtitle">{first}</h1>
 			<div id="expand12">
 				<p id="descp">
 					{second}
@@ -47,9 +48,12 @@
 			</div>
 		</div>
 		<div id="expandmidle">
-			<div id="verticalbar"/>
+			<div id="verticalbar" />
 		</div>
 		<div id="expand2">
+			{#each logos as logo, index}
+				<img class="logo" src="../../static/{logo}" alt="">
+			{/each}
 		</div>
 	</div>
 </div>
@@ -120,7 +124,6 @@ grey : 2f2f31
 		visibility: visible;
 	}
 
-	
 	button {
 		text-decoration: none;
 	}
@@ -165,14 +168,13 @@ grey : 2f2f31
 		overflow: hidden;
 	}
 
-
 	#expand12 {
 		width: 100%;
 		font-weight: bolder;
 		height: 70%;
 		padding: 0px 10px 0px 10px;
 	}
-	
+
 	#expand1 {
 		width: 80%;
 		overflow: hidden;
@@ -185,26 +187,34 @@ grey : 2f2f31
 	}
 
 	#expandmidle {
-		display: flex;	
-		width: 25%;
+		display: flex;
+		width: 15%;
 		align-items: center;
-		height: 80%;
+		height: 100%;
 		justify-content: center;
 	}
 
 	#expand2 {
 		width: 20%;
-		height: 100%;
+		height: 90%;
 		align-items: center;
 		display: flex;
+		justify-content:space-around;
 		flex-direction: column;
 		transition: width 0s;
 	}
 
+	.logo {
+		padding: 5px;
+		width : 30px;
+		height: 30px;
+	}
+
 	#verticalbar {
 		width: 4px;
-		height: 80%;
+		height: 70%;
 		background-color: #2f2f31;
+		transform: translateY(-20px);
 	}
 
 	/* 
