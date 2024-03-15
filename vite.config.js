@@ -7,6 +7,7 @@ export default defineConfig({
 			allow : [
 				searchForWorkspaceRoot(process.cwd()),
 				'**/static/**',
+				'**/static/laravel-2.svg'
 			]
 		}
 	},
