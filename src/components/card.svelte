@@ -52,7 +52,7 @@
 		</div>
 		<div id="expand2">
 			{#each logos as logo, index}
-				<img class="logo" src="../../static/{logo}" alt="">
+				<img class="logo" src="{logo}" alt="">
 			{/each}
 		</div>
 	</div>
