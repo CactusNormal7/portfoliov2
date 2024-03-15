@@ -56,9 +56,12 @@
 
 	let scrollLevel = 0;
 	//____________________________________
-
 	let elementToAnimate;
+	let elementToAnimate2;
+	let elementToAnimate3;
 	let isinter = false;
+	let isinter2 = false;
+	let isinter3 = false;
 
 	const observeElement = () => {
 		const observer = new IntersectionObserver((entries) => {
@@ -71,7 +74,29 @@
 			});
 		});
 
+		const observer2 = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					isinter2 = true;
+				} else {
+					isinter2 = false;
+				}
+			});
+		});
+
+		const observer3 = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					isinter3 = true;
+				} else {
+					isinter3 = false;
+				}
+			});
+		});
+
 		observer.observe(elementToAnimate);
+		observer2.observe(elementToAnimate2);
+		observer3.observe(elementToAnimate3);
 	};
 	//____________________________________
 
@@ -149,28 +174,28 @@
 				on:mouseleave={mouseLeaveButtonNavBar}
 				on:mouseenter={mouseEnterButtonNavBar}
 				on:click={scrollToSection.bind(this, 0)}
-				class="navbarButton">about me</button
+				class="navbarButton">Welcome</button
 			>
 			<div class="spacerNavbar" />
 			<button
 				on:mouseleave={mouseLeaveButtonNavBar}
 				on:mouseenter={mouseEnterButtonNavBar}
 				on:click={scrollToSection.bind(this, 1)}
-				class="navbarButton">projects</button
+				class="navbarButton">About Me</button
 			>
 			<div class="spacerNavbar" />
 			<button
 				on:mouseleave={mouseLeaveButtonNavBar}
 				on:mouseenter={mouseEnterButtonNavBar}
 				on:click={scrollToSection.bind(this, 2)}
-				class="navbarButton">test</button
+				class="navbarButton">Projects</button
 			>
 			<div class="spacerNavbar" />
 			<button
 				on:mouseleave={mouseLeaveButtonNavBar}
 				on:mouseenter={mouseEnterButtonNavBar}
-				on:click={scrollToSection.bind(this, 3)}
-				class="navbarButton">test</button
+				on:click={scrollToSection.bind(this, 4)}
+				class="navbarButton">Contacts</button
 			>
 		</div>
 	</div>
@@ -209,19 +234,38 @@
 	</div>
 
 	<div class="section" id="sec3" bind:this={sections[2]}>
-		<div class="MainTittleSection">
-			<h1 id="mainTittle">WELCOME</h1>
+		<div id="AboutMeSection">
+			<div bind:this={elementToAnimate2} id="rrrrrrrr">
+				{#if isinter2}
+					<h1 class="TitleSection animate-test" id="aboutMeTittle">ABOUT ME</h1>
+				{:else}
+					<h1 class="TitleSection" id="aboutMeTittle">ABOUT ME</h1>
+				{/if}
+			</div>
+			<div id="aboutUnderSection" />
+		</div>
+	</div>
+	<div class="section" id="sec1" bind:this={sections[4]}>
+		<div id="ContactSection">
+			<div bind:this={elementToAnimate3} id="rrrrrrrr">
+				{#if isinter3}
+					<h1 class="TitleSection animate-test" id="contactMeTittle">CONTACT ME</h1>
+				{:else}
+					<h1 class="TitleSection" id="contactMeTittle">CONTACT ME</h1>
+				{/if}
+			</div>
+			<div id="aboutUnderSection" />
 		</div>
 	</div>
 </body>
 
 <!-- 
 	----colors----
-
+	
 	black : 141416
 	grey : 2f2f31
-
-	-->
+	
+-->
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500&display=swap');
@@ -364,26 +408,49 @@
 		transition: 1s ease;
 	}
 
-	.MainTittleSection {
+	#AboutMeSection {
+		width: 80%;
+		height: 60%;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+	}
+	#ContactSection {
+		width: 80%;
+		height: 60%;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#rrrrrrrr {
 		overflow: visible;
+	}
+
+	#aboutMeTittle {
+		margin-bottom: 0px;
+		font-size: 150px;
+		text-align: right;
+	}
+
+	#contactMeTittle {
+		margin-bottom: 0px;
+		font-size: 150px;
+		text-align: center;
+	}
+
+	#aboutUnderSection {
+		width: 100%;
+		height: 100%;
 	}
 
 	#divWrapper {
 		display: contents;
 	}
 
-	/* @-webkit-keyframes tracking-in-expand {
-			0% {
-				letter-spacing: -0.5em;
-				opacity: 0;
-			}
-			40% {
-				opacity: 0.6;
-			}
-			100% {
-				opacity: 1;
-			}
-		} */
+	.MainTittleSection {
+		overflow: visible;
+	}
 
 	@media screen and (max-width: 900px) {
 		.navbarDiv {
