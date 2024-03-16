@@ -46,6 +46,8 @@
 	let body;
 	let cardsRef = [];
 
+	let textarea = null;
+
 	//mouse speed
 	let lastMouseX = 0;
 	let lastMouseY = 0;
@@ -53,6 +55,7 @@
 	let speedY = 0;
 	let marge;
 	let cas = 0;
+	let ratioratio = 1;
 
 	let scrollLevel = 0;
 	//____________________________________
@@ -62,6 +65,11 @@
 	let isinter = false;
 	let isinter2 = false;
 	let isinter3 = false;
+
+	function mailto() {
+		const mailtoLink = `mailto:jules.besson7@gmail.com`;
+		window.location.href = mailtoLink;
+	}
 
 	const observeElement = () => {
 		const observer = new IntersectionObserver((entries) => {
@@ -100,6 +108,12 @@
 	};
 	//____________________________________
 
+	const ddddd = () => {
+		let msg = textarea.value;
+		msg = msg.replace(/ /g, ' ');
+		textarea.value = encodeURIComponent(msg);
+	};
+
 	const handleScroll = (e) => {
 		if (e.deltaY > 0 && currentSection < sections.length - 1) {
 			currentSection++;
@@ -124,8 +138,8 @@
 				cursorDiameter = 200;
 			}
 			marge = Math.floor(cursorDiameter / 3);
-			cursor.style.width = `${cursorDiameter}px`;
-			cursor.style.height = `${cursorDiameter}px`;
+			cursor.style.width = `${cursorDiameter * ratioratio}px`;
+			cursor.style.height = `${cursorDiameter * ratioratio}px`;
 		}
 
 		cursor.style.left = `${currentMouseX - marge}px`;
@@ -142,11 +156,25 @@
 		cursor.style.visibility = 'hidden';
 	}
 
-	function test() {
-		for (let i = 0; i < cardsRef.length; i++) {
-			console.log(cardsRef[i].children[0]);
-		}
+	function nnn() {
+		insideCursor.style.backgroundColor = 'black';
+		cursor.style.backgroundColor = '#2f2f31';
+		cursor.style.mixBlendMode = 'normal';
+		ratioratio = 2;
 	}
+
+	function nnnn() {
+		insideCursor.style.backgroundColor = 'white';
+		cursor.style.backgroundColor = 'white';
+		cursor.style.mixBlendMode = 'difference';
+		ratioratio = 1;
+	}
+
+	// function test() {
+	// 	for (let i = 0; i < cardsRef.length; i++) {
+	// 		console.log(cardsRef[i].children[0]);
+	// 	}
+	// }
 
 	function mouseLeaveButtonNavBar() {
 		cursor.style.visibility = 'visible';
@@ -164,7 +192,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<body bind:this={body} on:click={test} role="application" on:mousemove={handleMouseMove}>
+<body bind:this={body} role="application" on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
 		<div bind:this={insideCursor} class="insideCircle" />
@@ -206,7 +234,27 @@
 		</div>
 	</div>
 
-	<div class="section" id="sec2" bind:this={sections[1]}>
+	<div class="section" id="sec3" bind:this={sections[1]}>
+		<div id="AboutMeSection">
+			<div bind:this={elementToAnimate2} id="rrrrrrrr">
+				{#if isinter2}
+					<h1 class="TitleSection animate-test" id="aboutMeTittle">ABOUT ME</h1>
+				{:else}
+					<h1 class="TitleSection" id="aboutMeTittle">ABOUT ME</h1>
+				{/if}
+			</div>
+			<div id="aboutUnderSection">
+				<p id="aboutMeP">
+					Passionate about IT and from my deep interest in development, I am looking for a
+					work-study program in web development for a period of 3 years. My commitment, my curiosity
+					and my desire to learn make me a candidate determined to actively contribute to your
+					company.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section" id="sec2" bind:this={sections[2]}>
 		<div id="UnderSection1sec2">
 			<div class="MainTittleSection">
 				<div bind:this={elementToAnimate} />
@@ -233,28 +281,38 @@
 		</div>
 	</div>
 
-	<div class="section" id="sec3" bind:this={sections[2]}>
-		<div id="AboutMeSection">
-			<div bind:this={elementToAnimate2} id="rrrrrrrr">
-				{#if isinter2}
-					<h1 class="TitleSection animate-test" id="aboutMeTittle">ABOUT ME</h1>
-				{:else}
-					<h1 class="TitleSection" id="aboutMeTittle">ABOUT ME</h1>
-				{/if}
-			</div>
-			<div id="aboutUnderSection" />
-		</div>
-	</div>
 	<div class="section" id="sec1" bind:this={sections[4]}>
 		<div id="ContactSection">
 			<div bind:this={elementToAnimate3} id="rrrrrrrr">
 				{#if isinter3}
-					<h1 class="TitleSection animate-test" id="contactMeTittle">CONTACT ME</h1>
+					<h1
+						on:click={mailto}
+						on:mouseenter={nnn}
+						on:mouseleave={nnnn}
+						class="TitleSection animate-test"
+						id="contactMeTittle"
+					>
+						CONTACT ME
+					</h1>
 				{:else}
-					<h1 class="TitleSection" id="contactMeTittle">CONTACT ME</h1>
+					<h1
+						on:click={mailto}
+						on:mouseenter={nnn}
+						on:mouseleave={nnnn}
+						class="TitleSection"
+						id="contactMeTittle"
+					>
+						CONTACT ME
+					</h1>
 				{/if}
 			</div>
-			<div id="aboutUnderSection" />
+			<!-- <div id="ContactUnderSection">
+				<form action="mailto:jules.besson7@gmail.com" id="mailForm" enctype="text/plain" onsubmit="{ddddd}">
+					<input type="text" class="mailInput" name="subject" placeholder="Objet" required />
+					<textarea bind:this={textarea} name="body" placeholder="Message" id="mailarea" required />
+					<button on:click={ddddd} id="mailbutton" type="submit">Envoyer</button>
+				</form>
+			</div> -->
 		</div>
 	</div>
 </body>
@@ -281,6 +339,18 @@
 	*::-webkit-scrollbar {
 		scrollbar-width: 0;
 		display: none;
+	}
+
+	input {
+		appearance: auto;
+		-webkit-appearance: auto;
+		-moz-appearance: auto;
+		border: initial;
+		margin: initial;
+		color: initial;
+		line-height: initial;
+		outline: initial;
+		box-shadow: initial;
 	}
 
 	body {
@@ -393,10 +463,6 @@
 		font-size: 150px;
 	}
 
-	.animate-test {
-		animation: tracking-in-expand 0.6s ease forwards, letter-shadow 1s ease forwards;
-	}
-
 	.spacerNavbar {
 		width: 100%;
 		height: 2px;
@@ -411,11 +477,13 @@
 	#AboutMeSection {
 		width: 80%;
 		height: 60%;
-		justify-content: center;
+		justify-content: left;
 		display: flex;
 		flex-direction: column;
 	}
+
 	#ContactSection {
+		align-items: center;
 		width: 80%;
 		height: 60%;
 		justify-content: center;
@@ -435,13 +503,129 @@
 
 	#contactMeTittle {
 		margin-bottom: 0px;
-		font-size: 150px;
+		font-size: 180px;
 		text-align: center;
+		transition: 0.5s ease;
+	}
+
+	#contactMeTittle:hover {
+		letter-spacing: 15px;
+	}
+
+	#contactMeTittle:hover #circleMouse {
+		background-color: red;
+	}
+
+	.animate-test {
+		animation: tracking-in-expand 0.6s ease, letter-shadow 1s ease forwards;
+	}
+
+	#aboutMeP {
+		font-size: 2em;
+		color: white;
+		font-family: 'Roboto', sans-serif;
+		padding-left: 10%;
+		padding-top: 5%;
+		letter-spacing: 1px;
+		height: 90%;
+		overflow: hidden;
 	}
 
 	#aboutUnderSection {
-		width: 100%;
+		width: 80%;
+		text-align: right;
+		overflow: hidden;
+		font-weight: bolder;
+		margin-left: auto;
 		height: 100%;
+		right: 0;
+	}
+
+	#ContactUnderSection {
+		width: 70%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		right: 0;
+	}
+
+	#mailForm {
+		width: 80%;
+		height: 90%;
+		gap: 10%;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.mailInput {
+		width: 50%;
+		padding: 12px;
+		appearance: auto;
+		background-color: #2f2f31;
+		transition: 0.5s ease;
+		color: white;
+	}
+
+	.mailInput:hover {
+		width: 55%;
+	}
+
+	.mailInput:focus {
+		background-color: white;
+		width: 55%;
+		font-weight: bolder;
+		box-shadow: 8px 8px #2f2f31;
+		border: 0px solid;
+		color: #2f2f31;
+	}
+
+	#mailarea {
+		width: 50%;
+		height: 50%;
+		padding: 12px;
+		appearance: auto;
+		border: 0px solid;
+		resize: none;
+		overflow: auto;
+		background-color: #2f2f31;
+		transition: 0.5s ease;
+		font-family: 'Roboto', sans-serif;
+		color: white;
+	}
+
+	#mailarea:hover {
+		width: 55%;
+	}
+
+	#mailarea:focus {
+		background-color: white;
+		width: 55%;
+		font-weight: bold;
+		box-shadow: 8px 8px #2f2f31;
+		border: 0px solid;
+		border: 0px solid;
+		color: #2f2f31;
+	}
+
+	#mailbutton {
+		width: 90px;
+		height: 40px;
+		border-radius: 0%;
+		background-color: #2f2f31;
+		border: 0px solid;
+		color: white;
+		padding: 10px;
+		transition: 0.5s ease;
+	}
+
+	#mailbutton:hover {
+		background-color: white;
+		color: #2f2f31;
+		font-weight: bolder;
 	}
 
 	#divWrapper {
