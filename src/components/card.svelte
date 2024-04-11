@@ -40,7 +40,7 @@
 	</div>
 	<div bind:this={expandedSection} id="expandedSection">
 		<div id="expand1">
-			<h1 id="expandtitle">{first}</h1>
+			<p id="expandtitle">{first}</p>
 			<div id="expand12">
 				<p id="descp">
 					{second}
@@ -155,6 +155,8 @@ grey : 2f2f31
 	}
 
 	#expandtitle {
+		font-size: 30px;
+		font-weight: bolder;
 		padding: 0px 10px 0px 10px;
 	}
 

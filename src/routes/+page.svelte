@@ -197,7 +197,6 @@
 	<title>jules besson</title>
 </svelte:head>
 
-
 <body bind:this={body} role="application" on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
@@ -244,9 +243,9 @@
 		<div id="AboutMeSection">
 			<div bind:this={elementToAnimate2} id="rrrrrrrr">
 				{#if isinter2}
-					<h1 class="TitleSection animate-test" id="aboutMeTittle">ABOUT ME</h1>
+					<p class="TitleSection animate-test" id="aboutMeTittle">ABOUT ME</p>
 				{:else}
-					<h1 class="TitleSection" id="aboutMeTittle">ABOUT ME</h1>
+					<p class="TitleSection" id="aboutMeTittle">ABOUT ME</p>
 				{/if}
 			</div>
 			<div id="aboutUnderSection">
@@ -265,9 +264,9 @@
 			<div class="MainTittleSection">
 				<div bind:this={elementToAnimate} />
 				{#if isinter}
-					<h1 id="projectTittle" class="animate-test TitleSection">Project</h1>
+					<p id="projectTittle" class="animate-test TitleSection">Project</p>
 				{:else}
-					<h1 id="projectTittle" class="TitleSection">Project</h1>
+					<p id="projectTittle" class="TitleSection">Project</p>
 				{/if}
 			</div>
 			<div id="cardSection">
@@ -291,7 +290,9 @@
 		<div id="ContactSection">
 			<div bind:this={elementToAnimate3} id="rrrrrrrr">
 				{#if isinter3}
-					<h1
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+					<p
 						on:click={mailto}
 						on:mouseenter={nnn}
 						on:mouseleave={nnnn}
@@ -299,9 +300,11 @@
 						id="contactMeTittle"
 					>
 						CONTACT ME
-					</h1>
+					</p>
 				{:else}
-					<h1
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+					<p
 						on:click={mailto}
 						on:mouseenter={nnn}
 						on:mouseleave={nnnn}
@@ -309,7 +312,7 @@
 						id="contactMeTittle"
 					>
 						CONTACT ME
-					</h1>
+					</p>
 				{/if}
 			</div>
 			<!-- <div id="ContactUnderSection">
@@ -689,6 +692,7 @@
 		}
 		.TitleSection {
 			font-size: 200px;
+			font-weight: bolder;
 			color: white;
 			margin: 0;
 			user-select: none;
