@@ -192,6 +192,12 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+
+<svelte:head>
+	<title>jules besson</title>
+</svelte:head>
+
+
 <body bind:this={body} role="application" on:mousemove={handleMouseMove}>
 	<div class="absoluteElements">
 		<div bind:this={cursor} class="circleMouse" />
